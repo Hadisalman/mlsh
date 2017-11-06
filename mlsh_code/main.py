@@ -28,7 +28,7 @@ import sys
 import shutil
 import subprocess
 import master
-
+from IPython import embed
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True
@@ -90,8 +90,8 @@ def train():
     theta_group = world_group.Incl([x for x in range(MPI.COMM_WORLD.size) if (x % 10 == mygroup)])
     comm = MPI.COMM_WORLD.Create(theta_group)
     comm.Barrier()
+    embed()
     # comm = MPI.COMM_WORLD
-
     master.start(callback, args=args, workerseed=workerseed, rank=rank, comm=comm)
 
 def main():

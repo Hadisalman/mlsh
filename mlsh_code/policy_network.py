@@ -64,6 +64,7 @@ class Policy(object):
         softmax[policy] = 1
         ac1, vpred1 =  self._act_forced(stochastic, ob[None], softmax)
         return ac1[0], vpred1[0]
+
     def debug(self, stochastic, ob):
         _, sel = self._debug(stochastic, ob[None])
         return sel[0]

@@ -40,7 +40,6 @@ def start(callback, args, workerseed, rank, comm):
     learner = Learner(env, policy, old_policy, sub_policies, old_sub_policies, comm, clip_param=0.2, entcoeff=0, optim_epochs=10, optim_stepsize=3e-5, optim_batchsize=64)
     rollout = rollouts.traj_segment_generator(policy, sub_policies, env, macro_duration, num_rollouts, stochastic=True, args=args)
 
-
     for x in range(10000):
         callback(x)
         if x == 0:
@@ -61,6 +60,7 @@ def start(callback, args, workerseed, rank, comm):
 
         totalmeans = []
         while mini_ep < warmup_time+train_time:
+            # env.render()
             mini_ep += 1
             # rollout
             rolls = rollout.__next__()

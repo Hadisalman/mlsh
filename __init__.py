@@ -1,8 +1,8 @@
 from gym.envs.registration import registry, register, make, spec
-from IPython import embed
+
 # Algorithmic
 # ----------------------------------------
-embed()
+
 register(
     id='Copy-v0',
     entry_point='gym.envs.algorithmic:CopyEnv',
