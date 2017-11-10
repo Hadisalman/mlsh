@@ -23,7 +23,10 @@ def start(callback, args, workerseed, rank, comm):
 	num_rollouts = args.num_rollouts
 	warmup_time = args.warmup_time
 	train_time = args.train_time
-	continue_iter = args.continue_iter
+	if args.continue_iter:
+		continue_iter = args.continue_iter
+	else:
+		continue_iter=0;
 	num_batches = 15
 
 	# observation in.
