@@ -225,6 +225,9 @@ def make_session(num_cpu):
     tf_config = tf.ConfigProto(
         inter_op_parallelism_threads=num_cpu,
         intra_op_parallelism_threads=num_cpu)
+    tf_config.gpu_options.allow_growth=True
+    tf_config.gpu_options.per_process_gpu_memory_fraction = 1
+    tf_config.allow_soft_placement=True
     return tf.Session(config=tf_config)
 
 
