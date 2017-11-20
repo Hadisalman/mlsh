@@ -44,9 +44,14 @@ def start(callback, args, workerseed, rank, comm):
 	rollout = rollouts.traj_segment_generator(policy, sub_policies, env, macro_duration, num_rollouts, stochastic=True, args=args)
 
 	for j in range(10000):
+		load=False
+
+		if j==0:
+			load=True
+		
 		x = j+int(continue_iter)
-		callback(x)
-		if x == 0:
+		callback(x, load)
+		if j == 0:
 			learner.syncSubpolicies()
 			print("synced subpols")
 		# Run the inner meta-episode.
